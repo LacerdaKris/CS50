@@ -4,43 +4,36 @@
 //exercício propoe troco apenas com moedas de 25, 10, 5 e 1 centavo
 int main(void)
 {
-    float a = 0.25, b = 0.10, c = 0.05, d = 0.01;
+    int twentyfive = 0;
+    int teen = 0;
+    int five = 0;
+    int one = 0;
     float recebido = get_float("Digite o valor recebido pelo cliente: \n");
     float compra = get_float("Digite o valor da compra: \n");
     float troco = recebido-compra;
     printf("Troco de: %.2f\n", troco);
-    float saldo = troco;
-    while(saldo >= 0)
+    while(troco > 0)
     {
-        if(saldo > a)
+        if(troco >= 0.25)
         {
-            saldo = saldo - a;
-            printf("Saldo -0,25: %.2f\n", saldo);
+            twentyfive++;
+            troco = troco - 0.25;
         }
-        else
+        else if(troco >= 0.10)
         {
-            if(saldo > b)
-            {
-                saldo = saldo - b;
-                printf("Saldo -0,10: %.2f\n", saldo);
-            }
-            else
-            {
-                if(saldo > c)
-                {
-                    saldo = saldo - c;
-                    printf("Saldo -0,05: %.2f\n", saldo);
-                }
-                else
-                {
-                    if(saldo > d)
-                    {
-                        saldo = saldo - d;
-                        printf("Saldo -0,01: %.2f\n", saldo);
-                    }
-                }
-            }
+            teen++;
+            troco = troco - 0.10;
+        }
+        else if(troco >= 0.05)
+        {
+            five++;
+            troco = troco - 0.05;
+        }
+        else if(troco >= 0.01)
+        {
+            one++;
+            troco = troco - 0.01;
         }
     }
-
+    printf("Sendo...\n %.i moedas de 0,25\n %.i moedas de 0,10\n %.i moedas de 0,05\n %.i moedas de 0,01\n" , twentyfive, teen, five, one);
 }
