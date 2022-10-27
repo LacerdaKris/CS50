@@ -1,17 +1,23 @@
 from cs50 import get_int
 
-height = 0
-while height > 8 or height < 1:
-    height = get_int("Altura, valor máximo 8: ")
+#Pirâmide, um for pra linhas e outro dentro pra colunas
+altura = get_int("Digite uma altura entre 1 e 8: ")
+for i in range(altura):
 
-for i in range(1, height + 1):
-    for j in range(1, height + 1):
+    for j in range(0, altura, 1):
 
-        if j > (height - i):
-            print("#", end="")
+        if i + j < altura - 1:
+            print(".", end="")
+
         else:
-            print(" ", end="")
+            print("#", end="")
 
-        if j == height:
-            print(" ", "#" * i, end="")
+    for j in range(altura-1, 0, -1):
+
+        if i + j < altura:
+            print(".", end="")
+
+        else:
+            print("#", end="")
+
     print()
