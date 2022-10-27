@@ -1,10 +1,11 @@
-print('Altura: ', end='');
-h = int(input());
+from cs50 import get_int
 
-while(h<0 or h > 8):
-  print("Coloque valor até 8")
-  print('Altura: ', end='');
-  h = int(input());
-
-for i in range(h):
-    print(" "*(h-i)+"#"*(i+1));
+#Pirâmide, um for pra linhas e outro dentro pra colunas
+altura = get_int("Digite uma altura entre 1 e 8: ")
+for i in range(altura):
+    for j in range(0, altura, 1):
+        if i + j < altura - 1:
+            print(".", end="")
+        else:
+            print("#", end="")
+    print()
