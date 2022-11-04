@@ -2,46 +2,46 @@
 #VISA 13 OU 16 DIGITOS, INICIO 4 - 4312888888881881 
 #MASTER 16 DIGITOS, INICIO 51, 52, 53, 54 OU 55 - 5405105105105100 
 
+#AMERICAN 15 DIGITOS, INICIO 34 OU 37 - 348282246310005 - 378282246310005
+#VISA 13 OU 16 DIGITOS, INICIO 4 - 4312888888881881
+#MASTER 16 DIGITOS, INICIO 51, 52, 53, 54 OU 55 - 5405105105105100
 from cs50 import get_string
+import math
 def main():
-    
-    number = get_string("Número do cartão: ")
-
-    res = [int(x) for x in str(number)]
-
-    if res[0] == 3 and (res[1] == 7 or res[1] == 4):
+    cartao = get_string("Numero do cartao: ")
+    digito = [int(x) for x in str(cartao)]
+    lista1 = []
+    lista2 = []
+    #conferir se a quantidade de digitos é valida, se sim, qual bandeira:
+    if 16 < len(cartao) > 13 or len(cartao) == 14:
+        print("INVALID")
+    elif digito[0] == 3 and (digito[1] == 4 or 7):
         print("AMEX")
-    elif res[0] == 5 and (res[1] == 1 or res[1] == 2 or res[1] == 3 or res[1] == 4 or res[1] == 5):
-        print("MASTERCARD")
-    elif res[0] == 4:
-       print("VISA")
+    elif digito[0] == 4:
+        print("VISA")
+    elif digito[0] == 5 and (digito[1] == 1, 2, 3, 4 or 5):
+        print("MASTER")
     else:
-        print("INVÁLIDO")
-        return 1
-
-    formula1 = []
-    formula2 = []
-
-    while (len(res) != 0):
-        last = res.pop()
-        formula2.append(last)
-        if len(res) == 0:
+        print("INVALID")
+    #incluir os digitos alternados em 2 listas:
+    while (len(digito) != 0):
+        ult = digito.pop()
+        lista1.append(ult)
+        if len(digito) == 0:
             break
-        second_last = res.pop()
-        formula1.append(second_last)
-
-    result = 0
-
-    for item in formula1:
-        if (item * 2) < 10:
-            result += item * 2
-        else:
-            new = (item * 2) % 10
-            result += new
-            new = (item * 2)//10
-            result += new
-
-    for item in formula2:
-        result += item
-
+        seg_ult = digito.pop()
+        lista2.append(seg_ult)
+    #multiplicar cada item da lista 2 por 2:
+    c = len(lista2)
+    for i in range(0, c, 1):
+        (lista2[i])*=2
+        getSum(lista2[i])
+    print(*lista2)
+    print(sum(lista2))
 main()
+
+def getSum(n):
+    sum = 0
+    for digit in str(n):
+        sum += int(digit)
+    return sum
