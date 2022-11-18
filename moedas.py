@@ -19,6 +19,6 @@ for c in moedas:
     elif troco > 0.01:
         troco -= 0.01
         moedas['1'] = moedas.get('1', c) +1
-
 for i in moedas:
-    print(f"Sendo: {moedas.get(i)} moeda(s) de {i}")
+    if moedas.get(i) > 0:
+        print(f"Sendo: {moedas.get(i)} moeda(s) de {i}")
