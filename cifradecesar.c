@@ -1,48 +1,29 @@
-#include <cs50.h>
-#include <stdio.h>
-#include <ctype.h>
-#include <string.h>
-#include <stdlib.h>
+#criptografa mensagens usando a cifra de César, girando cada letra em posições.
+#p é o texto, pi é o i-ésimo caractere em p, e k é uma chave secreta (um inteiro não negativo),
+#então cada letra, c i , em o texto cifrado, c , é calculado como: C i = (P i + K)% 26
+from cs50 import get_string
+from cs50 import get_int
 
-int main(int argc, string argv[])
-{
-    //LINHA DE COMANDO - VERIFICA SE HÁ ARGUMENTOS
-        if (argc != 2)
-        { printf("argumento ausente ./caesar key\n");
-        return 1;}
-
-    //CARACTERES SEJAM DÍGITOS
-        string chave = argv[1];
-        for (int i = 0, n = strlen(chave); i < n; i++)
-        {
-        if (isdigit(chave[i]) == false)
-         {
-         printf("ESQUECEU NÚMERO: ./caesar key\n");
-         return 1;
-         }
-        }
-
-    // CONVERTA ARGUMENTO STRING PARA INT
-    int key = atoi(argv[1]);
-    if (key > 26) // MAIOR 26
-    { key %= 26;    }
-
-    // SOLICITA TEXTO SIMPLES AO USUÁRIO
-    string p = get_string("TEXTO SIMPLES: ");
-    printf("TEXTO CRIPTOGRAFADO: ");
-    for (int i = 0, n = strlen(p); i < n; i++)
-
-    //SOMENTE LETRAS SERÃO MODIFICADAS - NÃO ALTERA MAIUSCULAS OU MINUSCULAS
-    {
-    if ((p[i] >= 'a' && p[i] <= 'z') || (p[i] >= 'A' && p[i] <= 'Z'))
-        {
-        if ((isupper(p[i]) && p[i] + key > 90) || (islower(p[i]) &&  p[i] + key > 122))
-            { p[i] = (int) p[i] - 26;   }
-
-        p[i] = (int) p[i] + key; //adiciona a chave ao valor ascii da letra
-        }
-    printf("%c", p[i]); //escreve a mensagem criptografada
-    }
-printf("\n");
-return 0;
-}
+chave = get_int("Digite a chave (número): ")
+texto = get_string("Digite o texto: ")
+#"ord" converte caracteres em decimal ascii
+digitos = [ord(x) for x in str(texto)]
+caracter = []
+#inclui apenas numero ascii de letras (maiusculas e minusculas)
+alfabeto = []
+for i in range(65, 123):
+    if 64 < i < 91 or 96 < i < 123:
+        alfabeto.append(i)
+#considera todos os ascii que são letras, soma a chave e adicona a lista caracter
+for p in digitos:
+    p = int(p)
+    if p in alfabeto and p+chave in alfabeto:
+        caracter.append(chr(p+chave))
+    #se somando a chave fica fora de letras, subtrair a chave
+    elif p in alfabeto:
+        caracter.append(chr(p-chave))
+#se forem pontuações ou espaços adiciona ascii a lista caracter (sem chave pra ficar igual)
+    else:
+        caracter.append(chr(p))
+#"*" imprime todos os itens da lista, e "sep" os separa pelo que for colocado entre aspas.
+print("Texto cifrado: ", *caracter, sep="", end="")
