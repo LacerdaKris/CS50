@@ -11,7 +11,7 @@ digitos = [x for x in str(chave)]
 alfabeto = list(string.ascii_lowercase)
 dicionario = {}
 n = 0
-#inclui ao dicionário cada letra do alfabeto com sua chave correspondente
+#inclui ao dicionário cada letra do alfabeto com sua chave correspondente:
 for n in range (26):
     dicionario[alfabeto[n]] = digitos[n]
     n += 1
@@ -19,10 +19,11 @@ for n in range (26):
 texto = get_string("Digite o texto: ")
 cifrado = []
 for d in texto:
+#se for letra, adiciona o valor da letra (chave no dicionário) em cifrado:
     if d in alfabeto:
-        cifrado.append()
-#se forem pontuações ou espaços adiciona a lista cifrado (sem alteração)
+        cifrado.append(dicionario.get(d))
+#se forem pontuações ou espaços adiciona a lista cifrado (sem alteração):
     else:
-        cifrado.append(chr(j))
+        cifrado.append(d)
 #"*" imprime todos os itens da lista, e "sep" os separa pelo que for colocado entre aspas.
 print("Texto cifrado: ", *cifrado, sep="", end="")
