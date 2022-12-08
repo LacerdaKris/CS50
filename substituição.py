@@ -17,13 +17,17 @@ for n in range (26):
     n += 1
 
 texto = get_string("Digite o texto: ")
-cifrado = []
 for d in texto:
-#se for letra, adiciona o valor da letra (chave no dicionário) em cifrado:
-    if d in alfabeto:
-        cifrado.append(dicionario.get(d))
-#se forem pontuações ou espaços adiciona a lista cifrado (sem alteração):
-    else:
-        cifrado.append(d)
-#"*" imprime todos os itens da lista, e "sep" os separa pelo que for colocado entre aspas.
-print("Texto cifrado: ", *cifrado, sep="", end="")
+#transforma todas em minúsculas pra comparar com as chaves do dicionario:
+    e = d.lower()
+    if e in dicionario:
+#se era maiúscula, transformar de volta em letra cifrada e substituir na string(replace):
+        if d.isupper():
+            texto = texto.replace(f'{d}', f'{(dicionario.get(e)).upper()}')
+        else:
+            texto = texto.replace(f'{d}', f'{(dicionario.get(e)).lower()}')
+print(texto)
+        
+#Também poderia incluir cada letra cifrada numa lista vazia "cifrado", e depois imprimir
+# todos os itens da lista "*"", com "sep" para separar pelo que for colocado entre aspas.
+# Exemplo: print("Texto cifrado: ", *cifrado, sep="", end="")
