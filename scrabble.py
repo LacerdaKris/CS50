@@ -10,8 +10,11 @@ points = [1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 
 def pontos(p):
     total = 0
     for digit in str(p):
-        digit = letras.index(digit.lower())
-        total += points[digit]
+        d = digit.lower()
+        #para não pontuar caracteres que não sejam letras:
+        if d in letras:
+            digit = letras.index(d)
+            total += points[digit]
     return total
 
 def main():
