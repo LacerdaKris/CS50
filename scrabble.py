@@ -3,7 +3,7 @@
 from cs50 import get_string
 import string
 
-#faz uma lista com as letras do alfabeto, e a outra com a pointuação de cada letra:
+#faz uma lista com as letras do alfabeto, e a outra com a pontuação de cada letra:
 letras = [chr(x) for x in range(ord('a'), ord('z')+1)]
 points = [1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10]
 #função para converter cada letra da palavra em pontos e somar total:
